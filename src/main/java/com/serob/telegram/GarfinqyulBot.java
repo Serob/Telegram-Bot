@@ -12,14 +12,13 @@ public class GarfinqyulBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String messageText = update.getMessage().getText();
         String firstName = update.getMessage().getFrom().getFirstName();
-
         System.out.println("MESSAGE FROM: " + firstName);
 
         if (!update.getMessage().hasText())
             return;
 
+        String messageText = update.getMessage().getText().trim();
         System.out.println("TEXT: " + messageText);
 
         SendMessage response = new SendMessage();
@@ -27,7 +26,7 @@ public class GarfinqyulBot extends TelegramLongPollingBot {
 
         if (TelegramUtils.isCommand(messageText)) {
             response.setText("Please, enter Your name)))");
-        } else if (firstName.equalsIgnoreCase(messageText.trim())) {
+        } else if (firstName.equalsIgnoreCase(messageText)) {
             response.setText("Hello, annnasun " + messageText);
         } else {
             response.setText("I know that your name isn't " + "`" + messageText + "`" + ", annasun!");
