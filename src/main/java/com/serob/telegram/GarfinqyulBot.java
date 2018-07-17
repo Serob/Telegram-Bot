@@ -10,6 +10,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
  */
 public class GarfinqyulBot extends TelegramLongPollingBot {
 
+    @Override
     public void onUpdateReceived(Update update) {
         String messageText = update.getMessage().getText();
         String firstName = update.getMessage().getFrom().getFirstName();
@@ -24,17 +25,12 @@ public class GarfinqyulBot extends TelegramLongPollingBot {
         SendMessage response = new SendMessage();
         response.setChatId(update.getMessage().getChatId());
 
-        switch (messageText){
-            case "/start" :
-            case "/help" :
-                response.setText("Please, enter Your name)))");
-                break;
-            default :
-                if(firstName.equalsIgnoreCase(messageText.trim())) {
-                    response.setText("Hello, annnasun " + messageText);
-                } else {
-                    response.setText("I know that your name isn't " + messageText + ", annasun!");
-                }
+        if (TelegramUtils.isCommand(messageText)) {
+            response.setText("Please, enter Your name)))");
+        } else if (firstName.equalsIgnoreCase(messageText.trim())) {
+            response.setText("Hello, annnasun " + messageText);
+        } else {
+            response.setText("I know that your name isn't " + "`" + messageText + "`" + ", annasun!");
         }
 
         try {
@@ -44,11 +40,14 @@ public class GarfinqyulBot extends TelegramLongPollingBot {
         }
     }
 
+    @Override
     public String getBotUsername() {
         return "Garfinqyul bot";
     }
 
+    @Override
     public String getBotToken() {
         return "663131521:AAGICw6AQiaxYv_AHOiTLu5ov5lqgns8Big";
     }
+
 }
