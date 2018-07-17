@@ -15,6 +15,10 @@ public class MainClass {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new GarfinqyulBot());
+            System.out.println();
+            System.out.println(" ---------------------");
+            System.out.println(" Bot started ! ");
+            System.out.println(" ---------------------");
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

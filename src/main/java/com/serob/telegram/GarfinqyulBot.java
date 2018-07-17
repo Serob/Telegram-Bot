@@ -11,11 +11,15 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 public class GarfinqyulBot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
+        String messageText = update.getMessage().getText();
+        String firstName = update.getMessage().getFrom().getFirstName();
+
+        System.out.println("MESSAGE FROM: " + firstName);
+
         if (!update.getMessage().hasText())
             return;
 
-        String messageText = update.getMessage().getText();
-        String firstName = update.getMessage().getFrom().getFirstName();
+        System.out.println("TEXT: " + messageText);
 
         SendMessage response = new SendMessage();
         response.setChatId(update.getMessage().getChatId());
@@ -29,7 +33,7 @@ public class GarfinqyulBot extends TelegramLongPollingBot {
                 if(firstName.equalsIgnoreCase(messageText.trim())) {
                     response.setText("Hello, annnasun " + messageText);
                 } else {
-                    response.setText("I know that your name isn't " + messageText + ", annsun!");
+                    response.setText("I know that your name isn't " + messageText + ", annasun!");
                 }
         }
 
