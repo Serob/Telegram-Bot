@@ -23,7 +23,8 @@
 
     <build>
         <plugins>
-            <!-- Jar Plugin: creates jar WITHOUT dependencies in it -->
+            <!-- Jar Plugin: creates jar WITHOUT dependencies in it
+            if "default-jar" is not "none")) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
