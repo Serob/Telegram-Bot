@@ -31,6 +31,8 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
                             <mainClass>com.serob.telegram.MainClass</mainClass>
                         </manifest>
                     </archive>
@@ -42,6 +44,27 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Another approach is to copy all jars from .m2 to somewhere (e.g. lib/)
+            and then set "classpathPrefix" on it from Jar Plugin -->
+<!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
 
             <!-- Assembly Plugin: creates jar WITH dependencies in it -->
             <plugin>
